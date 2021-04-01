@@ -1,3 +1,4 @@
+require 'pry'
 class UsersController < ApplicationController
 
   get '/signup' do
@@ -10,6 +11,17 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
+    params.each do |label, input|
+        if input.empty?
+            flash[:signup_error] = "Please enter a value for #{label}"
+            redirect to "/signup"
+        else
+          @user = User.new(params[:user])
+          @user.save 
+          session[:user_id] = user.id 
+          redirect to "/favorites"
+        end
+    end
   end
 
 
