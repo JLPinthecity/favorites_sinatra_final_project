@@ -9,5 +9,8 @@ class UsersController < ApplicationController
     end
   end
 
+  post "/signup" do
+  end
+
 
 end
