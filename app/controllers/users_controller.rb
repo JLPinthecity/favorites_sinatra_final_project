@@ -24,6 +24,14 @@ class UsersController < ApplicationController
     end
   end
 
+  get 'login' do
+    if logged_in?
+        redirect to '/favorites'
+    else
+        erb :"/users/login"
+    end
+  end
+
   get 'logout' do
     erb :"users/logout"
   end
