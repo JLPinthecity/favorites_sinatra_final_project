@@ -17,11 +17,15 @@ class UsersController < ApplicationController
             redirect to "/signup"
         else
           @user = User.new(params[:user])
-          @user.save 
-          session[:user_id] = user.id 
+          @user.save
+          session[:user_id] = @user.id
           redirect to "/favorites"
         end
     end
+  end
+
+  get 'logout' do
+    erb :"users/logout"
   end
 
 
