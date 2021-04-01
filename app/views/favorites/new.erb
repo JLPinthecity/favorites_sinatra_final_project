@@ -6,19 +6,19 @@
         <form action="/favorites" method="POST">
         <label>Category:</label>   
         <p style="color: gray; font-size: 12px;">Hint: Can be anything you want&#8212;Something like <i>My favorite documentary</i> or <i>My go-to brownie recipe</i>.</p>
-        <p><input type="text" name="favorite[category]", id="category"></p>
+        <p><input type="text" name="favorite[category]", id="category" required></p>
 
         <label>Name:</label>  
         <p style="color: gray; font-size: 12px;">Hint: Here's where you record what it is.</p> 
-        <p><input type="text" name="favorite[name]", id="name"></p>
+        <p><input type="text" name="favorite[name]", id="name" required></p>
 
         <label>Notes:</label>  
         <p style="color: gray; font-size: 12px;">AKA Stuff you want to remember about it.</p> 
-        <p><input type="text" name="favorite[notes]", id="name"></p>
+        <p><input type="text" name="favorite[notes]", id="name" required></p>
 
         <label>Url:</label>  
         <p style="color: gray; font-size: 12px;">Link it for future reference.</p> 
-        <p><input type="text" name="url", id="url"></p>
+        <p><input type="text" name="favorite[url]", id="url" required></p>
 
         <input type="submit" value="submit">
 
