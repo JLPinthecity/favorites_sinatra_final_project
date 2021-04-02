@@ -2,7 +2,13 @@ require 'pry'
 class FavoritesController < ApplicationController
 
   get '/favorites' do 
-    erb :"favorites/index"
+    if logged_in?
+      @favorites = Favorite.all 
+      erb :"favorites/index"
+    else
+      flash[:not_logged_in] = "Please log in."
+      redirect to '/login'
+    end
   end
 
   get '/favorites/new' do
@@ -26,3 +32,6 @@ class FavoritesController < ApplicationController
       redirect to '/login'
     end
 end
+
+
+#favorites/:id
