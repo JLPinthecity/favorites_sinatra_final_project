@@ -33,6 +33,8 @@ class UsersController < ApplicationController
     end
   end
 
+  #post login 
+
   get '/logout' do
     erb :"users/logout"
   end

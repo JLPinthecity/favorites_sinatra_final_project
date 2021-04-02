@@ -17,8 +17,12 @@ class FavoritesController < ApplicationController
     if logged_in? 
       @favorite = current_user.favorites.build(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes])
       @favorite.url = Url.new(params[:url])
-      redirect to "/favorites"
+        if @favorite.save
+          redirect to "/favorites/#{@favorite.id}"
+        else
+          redirect to "/favorites/new"
+        end
+    else
+      redirect to '/login'
     end
-  end
-
 end
