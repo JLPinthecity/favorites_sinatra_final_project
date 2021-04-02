@@ -36,10 +36,9 @@ class FavoritesController < ApplicationController
     end
   end
 
-  get '/favorite/:id' do
+  get '/favorites/:id' do
     if logged_in?
-      @favorite = Favorite.find(params[:favorite][:id])
-      binding.pry
+      @favorite = Favorite.find(params[:id])
       erb :"favorites/show"
     else
       flash[:not_logged_in] = "Please log in."

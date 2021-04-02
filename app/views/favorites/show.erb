@@ -2,11 +2,18 @@
 <html>
 <body>
 
- <% if flash.has?(::not_logged_in) %>  
-    <%= flash[::not_logged_in] %>
-    <% end %></p>
+<label><h2>Favorite thing category:</label> <%= @favorite.category %></h2>
 
+<p><label>Name:</label> <%= @favorite.name %></p>
 
-TEST
+<p><label>Notes to self:</label> <%= @favorite.notes %>
+
+<p><label>Link:</label> <a href="<%= @favorite.url.link %>" target="_blank"><%= @favorite.url.link %></a>
+
+<p><label>Date submitted:</label> <%= @favorite.created_at.to_s.split(" ")[0] %>
+<br>
+<br/>
+
+<a href="/favorites"><button>Back to favorites</button></a>
 </body>
 </html>
