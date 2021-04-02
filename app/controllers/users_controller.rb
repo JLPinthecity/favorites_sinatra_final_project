@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-       flash[:message] = "You already have an account and are logged in."
+       flash[:already_logged_in] = "You already have an account and are logged in."
        redirect to "/favorites"
     else
       erb :"users/signup"
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
+        flash[:logged_in_already] = "Welcome back! You're already logged in."
         redirect to '/favorites'
     else
         erb :"/users/login"
