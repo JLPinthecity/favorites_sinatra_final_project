@@ -21,11 +21,10 @@
     <% @favorites.each do |favorite| %>
     
     <ul>
-    <a href="/favorites/<%= favorite.id %>"><li>Category: <%= favorite.category %></li></a>
+    <li>Category: <a href="/favorites/<%= favorite.id %>"><%= favorite.category %></li></a>
     <p>Name: <%= favorite.name %></p>
     <p>Notes: <%= favorite.notes %></p>
-    <p>URL: <%= favorite.url %></p>
-   
+    <p>URL: <%= favorite.url.link %></p>
     <p>Date created: <%= favorite.created_at.to_s.split(" ")[0] %></p>
     
     </ul>

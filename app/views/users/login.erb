@@ -5,12 +5,13 @@
     <% if flash.has?(:not_logged_in) %>
     <%= flash[:not_logged_in] %>
     <% end %></p>
-    
+
       <form action="/login" method="POST">
       <label>Username:</label>
       <p><input type="text" name="user[username]" id="username" required></p>
       <label>Password:</label>
       <p><input type="text" name="user[password]" id="password" required></p>
+      <input type="submit" value="Log in">
     </body>
 
   </html>
