@@ -9,8 +9,8 @@
     <%= flash[:have_account_error] %>
     <% end %></p>
     
-    <% if flash.has?(:already_logged_in) %>  
-    <%= flash[:already_logged_in] %>
+    <% if flash.has?(:logged_in) %>  
+    <%= flash[:logged_in] %>
     <% end %></p>
 
     <% if flash.has?(:signup_error) %>
@@ -18,8 +18,21 @@
     <% end %></p>
 
     <p>Here are all your favorites...</p>
+    <% @favorites.each do |favorite| %>
+    
+    <ul>
+    <li>Category: <%= favorite.category %></li>
+    <p>Name: <%= favorite.name %></p>
+    <p>Notes: <%= favorite.notes %></p>
+    <p>URL: <%= favorite.url.link %></p>
+    <% binding.pry %>
+    <p>Date created: <%= favorite.created_at.to_s.split(" ")[0] %></p>
+    
+    </ul>
 
+    <% end %>
 
+    
 
 
     <a href="/favorites/new"><button type="create new">Log a new favorite</button><a href="/logout"><button type="logout">Log out</button>

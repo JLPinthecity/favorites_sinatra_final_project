@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-        flash[:logged_in_already] = "Welcome back! You're already logged in."
+        flash[:logged_in] = "Welcome! You're logged in."
         redirect to '/favorites'
     else
         erb :"/users/login"
