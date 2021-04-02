@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-       flash[:already_logged_in] = "You already have an account and are logged in."
+       flash[:have_account_error] = "You already have an account and are logged in."
        redirect to "/favorites"
     else
       erb :"users/signup"

@@ -5,8 +5,8 @@
     </header>
     <body>
 
-    <% if flash.has?(:logged_in_already) %>  
-    <%= flash[:logged_in_already] %>
+    <% if flash.has?(:have_account_error) %>  
+    <%= flash[:have_account_error] %>
     <% end %></p>
     
     <% if flash.has?(:already_logged_in) %>  
@@ -15,10 +15,6 @@
 
     <% if flash.has?(:signup_error) %>
     <%= flash[:signup_error] %>
-    <% end %></p>
-
-    <% if flash.has?(:not_logged_in) %>
-    <%= flash[:not_logged_in] %>
     <% end %></p>
 
     <p>Here are all your favorites...</p>

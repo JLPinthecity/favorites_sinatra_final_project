@@ -1,6 +1,11 @@
 <!DOCTYPE html>
   <html>
     <body>
+
+    <% if flash.has?(:not_logged_in) %>
+    <%= flash[:not_logged_in] %>
+    <% end %></p>
+    
       <form action="/login" method="POST">
       <label>Username:</label>
       <p><input type="text" name="user[username]" id="username" required></p>
