@@ -33,7 +33,7 @@
     <li>Category: <a href="/favorites/<%= favorite.id %>"><%= favorite.category %></li></a>
     <p>Name: <%= favorite.name %></p>
     <p>Notes: <%= favorite.notes %></p>
-    <p>URL: <a href="<%= favorite.url.link %>" target="_blank"><%= favorite.url.link %></a></p>
+    <p>URL: <a href="<%= favorite.url %>" target="_blank"><%= favorite.url %></a></p>
     <p>Date created: <%= favorite.created_at.to_s.split(" ")[0] %></p>
     
  

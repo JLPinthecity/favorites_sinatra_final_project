@@ -9,16 +9,16 @@
     <% if flash.has?(:logout_success) %>
     <%= flash[:logout_success] %>
     <% end %></p>
-      
-    <% if flash.has?(:login_error) %>
+
+    <% if flash.has?(:login_error) %>  
     <%= flash[:login_error] %>
     <% end %></p>
 
       <form action="/login" method="POST">
       <label>Username:</label>
-      <p><input type="text" name="user[username]" id="username" required></p>
+      <p><input type="text" name="user[username]" id="username"></p>
       <label>Password:</label>
-      <p><input type="text" name="user[password]" id="password" required></p>
+      <p><input type="text" name="user[password]" id="password"></p>
      
       <input type="submit" value="Log in">
     </body>
