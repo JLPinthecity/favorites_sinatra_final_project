@@ -49,7 +49,7 @@ class FavoritesController < ApplicationController
   get '/favorites/:id/edit' do
     if logged_in?
       @favorite = Favorite.find(params[:id])
-      if @favorite.user_id == current_user.id
+      if @favorite && @favorite.user == current_user
         erb :"/favorites/edit"
       else
         flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."

@@ -14,11 +14,14 @@
 <br>
 <br/>
 
+<a href="/favorites/<%= @favorite.id %>/edit"><button>Edit favorite</button></a>
+
+<a href="/favorites"><button>Back to favorites</button></a>
+
 <form action="/favorites/<%= @favorite.id %>/delete" method="POST">
 <input type="submit" value="Delete favorite">
+</form>
 
 
-<a href="/favorites/<%= @favorite.id %>/edit"><button>Edit favorite</button></a>
-<a href="/favorites"><button>Back to favorites</button></a>
 </body>
 </html>
