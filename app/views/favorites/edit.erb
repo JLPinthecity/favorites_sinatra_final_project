@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<form action="/favorites/<%= @favorite.id %>/edit" method="POST">
+<form action="/favorites/<%= @favorite.id %>" method="POST">
 <input type="hidden" id="hidden" name="_method" value="PATCH">
 
 <label>Category:</label>
@@ -22,6 +22,7 @@
 <br>
 <br/>
 <input type="submit" value="Edit favorite">
+</form>
 
 </body>
 </html>

@@ -19,16 +19,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  get '/favorites/:id' do
-    if logged_in?
-      @favorite = Favorite.find(params[:id])
-      erb :"favorites/show"
-    else
-      flash[:not_logged_in] = "Please log in."
-      redirect to "/login"
-    end
-  end  
-
   post '/favorites' do
     if logged_in? 
       @favorite = current_user.favorites.build(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes])
@@ -46,20 +36,51 @@ class FavoritesController < ApplicationController
     end
   end
 
-  get '/favorites/:id/edit' do
-    if logged_in
+  get '/favorites/:id' do
+    if logged_in?
       @favorite = Favorite.find(params[:id])
-      if @favorite.user_id != current_user.id
+      erb :"favorites/show"
+    else
+      flash[:not_logged_in] = "Please log in."
+      redirect to "/login"
+    end
+  end  
+
+  get '/favorites/:id/edit' do
+    if logged_in?
+      @favorite = Favorite.find(params[:id])
+      if @favorite.user_id == current_user.id
+        erb :"/favorites/edit"
+      else
         flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
         redirect to '/favorites'
-      else
-        erb :"/favorites/edit"
       end
     else
       flash[:not_logged_in] = "Please log in."
       redirect to "/login"
     end
   end
+
+  patch '/favorites/:id' do 
+    if logged_in?
+      
+
+      
+
+
+
+      if @favorite.user_id != current_user.id
+       
+        redirect to '/favorites'
+      else
+        erb :"/favorites/edit"
+      end
+    else   
+      flash[:not_logged_in] = "Please log in."
+      redirect to "/login"
+    end
+  end
+
 
   post "/favorites/:id/delete" do 
     if !logged_in?
