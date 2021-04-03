@@ -46,10 +46,20 @@ class FavoritesController < ApplicationController
     end
   end  
 
-#{"favorite"=>{"category"=>"Fave Disney World Snack", 
-#"name"=>"Dole Whip", "notes"=>"Eat it fast!", 
-#"url"=>"https://disneyworld.disney.go.com/dining/magic-kingdom/aloha-isle/"}}
-
-#NEXT: favorites/:id
+  post "/favorites/:id/delete" do 
+    if !logged_in?
+      flash[:not_logged_in] = "Please log in."
+      redirect to '/login'
+    else
+      @favorite = Favorite.find(params[:id])
+      if @favorite.user_id != current_user.id
+        flash[:wrong_user] = "Sorry you can only delete your own favorites."
+        redirect to '/favorites'
+      else
+        @favorite.delete
+        redirect to '/favorites'
+      end
+    end
+  end
 
 end
