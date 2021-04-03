@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
       redirect to '/login'
     end
   end
-
+ 
   get '/favorites/new' do
     if logged_in?
         erb :"/favorites/new"
@@ -23,6 +23,7 @@ class FavoritesController < ApplicationController
     if logged_in? 
       @favorite = current_user.favorites.build(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes])
       @favorite.url = Url.new(:link => params[:favorite][:url])
+      binding.pry
       @url = @favorite.url
       @url.user_id = current_user.id
       @url.save
@@ -61,27 +62,30 @@ class FavoritesController < ApplicationController
     end
   end
 
-  patch '/favorites/:id' do 
-    if logged_in?
-      @favorite = Favorite.find(params[:id])
-      if @favorite && @favorite.user == current_user
-         params.each do |label, input|
-        if input.empty? 
-          flash[:edit_error] = "Please enter a value for #{label}. Can't be blank."
-          redirect to "/favorites/#{@favorite.id}"
-        else
-          @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:category], :url => params[:favorite][:url])
-          redirect to "/favorites/#{@favorite.id}"
-        end
-      else
-        flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
-        redirect to '/favorites'
-      end
-    else   
-      flash[:not_logged_in] = "Please log in."
-      redirect to "/login"
-    end
-  end
+  # patch '/favorites/:id' do 
+  #   if logged_in? 
+  #     @favorite = Favorite.find(params[:id])
+  #     params.each do |label, input|
+  #       binding.pry
+  #       if input.empty? 
+  #         flash[:edit_error] = "Please enter a value for #{label}. Can't be blank."
+  #         redirect to "/favorites/#{@favorite.id}"
+  #       else
+  #         if @favorite && @favorite.user_id == current_user.id
+  #            @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:category], :url => params[:favorite][:url])
+  #            redirect to "/favorites/#{@favorite.id}"
+  #            binding.pry
+  #         else
+  #            flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
+  #            redirect to '/favorites'
+  #         end
+  #       end
+  #     end
+  #   else   
+  #     flash[:not_logged_in] = "Please log in."
+  #     redirect to "/login"
+  #   end
+  # end
 
 
   post "/favorites/:id/delete" do 

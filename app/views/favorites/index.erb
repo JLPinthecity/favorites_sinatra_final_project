@@ -35,12 +35,12 @@
     <p>Notes: <%= favorite.notes %></p>
     <p>URL: <a href="<%= favorite.url.link %>" target="_blank"><%= favorite.url.link %></a></p>
     <p>Date created: <%= favorite.created_at.to_s.split(" ")[0] %></p>
+    
  
     </ul>
 
     <% end %>
 
-    
 
 
     <a href="/favorites/new"><button type="create new">Log a new favorite</button><a href="/logout"><button type="logout">Log out</button>

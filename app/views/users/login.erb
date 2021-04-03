@@ -6,12 +6,23 @@
     <%= flash[:not_logged_in] %>
     <% end %></p>
 
+    <% if flash.has?(:logout_success) %>
+    <%= flash[:logout_success] %>
+    <% end %></p>
+      
+    <% if flash.has?(:login_error) %>
+    <%= flash[:login_error] %>
+    <% end %></p>
+
       <form action="/login" method="POST">
       <label>Username:</label>
       <p><input type="text" name="user[username]" id="username" required></p>
       <label>Password:</label>
       <p><input type="text" name="user[password]" id="password" required></p>
+     
       <input type="submit" value="Log in">
     </body>
+
+    <a href="/"><button>Go back to homepage</button></a>
 
   </html>

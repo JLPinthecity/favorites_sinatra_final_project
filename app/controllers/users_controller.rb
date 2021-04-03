@@ -33,10 +33,25 @@ class UsersController < ApplicationController
     end
   end
 
-  #post login 
+  post '/login' do
+    user = User.find_by(:username => params[:user][:username])
+    if user && user.authenticate(params[:user][:password])
+      session[:user_id] = user.id
+      redirect to "/favorites"
+    else
+      flash[:login_error] = "Username or password not recognized."
+      redirect to "/login"
+    end
+  end
 
   get '/logout' do
-    erb :"users/logout"
+    if logged_in?
+      session.destroy
+      flash[:logout_success] = "You have logged out."
+      redirect to "login"
+    else
+      redirect to "/"
+    end
   end
 
 
