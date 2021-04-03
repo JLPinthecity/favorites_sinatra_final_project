@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="/favorites/<%= @favorite.id %>/edit" method="POST">
+<input type="hidden" id="hidden" name="_method" value="PATCH">
+
+<label>Category:</label>
+<input type="text" id="category" name="favorite[category]" value="<%= @favorite.category %>">
+<br>
+<br/>
+<label>Name:</label>
+<input type="text" id="name" name="favorite[name]" value="<%= @favorite.name %>">
+<br>
+<br/>
+<label>Notes:</label>
+<input type="text" id="notes" name="favorite[notes]" value="<%= @favorite.notes %>">
+<br>
+<br/>
+<label>URL:</label>
+<input type="text" id="url" name="favorite[url]" value="<%= @favorite.url.link %>">
+<br>
+<br/>
+<input type="submit" value="Edit favorite">
+
+</body>
+</html>
