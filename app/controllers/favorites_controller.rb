@@ -19,6 +19,16 @@ class FavoritesController < ApplicationController
     end
   end
 
+  get '/favorites/:id' do
+    if logged_in?
+      @favorite = Favorite.find(params[:id])
+      erb :"favorites/show"
+    else
+      flash[:not_logged_in] = "Please log in."
+      redirect to "/login"
+    end
+  end  
+
   post '/favorites' do
     if logged_in? 
       @favorite = current_user.favorites.build(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes])
@@ -36,16 +46,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  get '/favorites/:id' do
-    if logged_in?
-      @favorite = Favorite.find(params[:id])
-      erb :"favorites/show"
-    else
-      flash[:not_logged_in] = "Please log in."
-      redirect to "/login"
-    end
-  end  
-
   post "/favorites/:id/delete" do 
     if !logged_in?
       flash[:not_logged_in] = "Please log in."
@@ -57,9 +57,10 @@ class FavoritesController < ApplicationController
         redirect to '/favorites'
       else
         @favorite.delete
+        flash[:delete_success] = "You have successfully deleted a favorite thing."
         redirect to '/favorites'
       end
     end
   end
 
-end
+endq
