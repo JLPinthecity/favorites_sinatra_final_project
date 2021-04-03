@@ -63,17 +63,19 @@ class FavoritesController < ApplicationController
 
   patch '/favorites/:id' do 
     if logged_in?
-      
-
-      
-
-
-
-      if @favorite.user_id != current_user.id
-       
-        redirect to '/favorites'
+      @favorite = Favorite.find(params[:id])
+      if @favorite && @favorite.user == current_user
+         params.each do |label, input|
+        if input.empty? 
+          flash[:edit_error] = "Please enter a value for #{label}. Can't be blank."
+          redirect to "/favorites/#{@favorite.id}"
+        else
+          @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:category], :url => params[:favorite][:url])
+          redirect to "/favorites/#{@favorite.id}"
+        end
       else
-        erb :"/favorites/edit"
+        flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
+        redirect to '/favorites'
       end
     else   
       flash[:not_logged_in] = "Please log in."
