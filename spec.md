@@ -21,7 +21,8 @@ User has_many favorites
 URL belongs_to favorites as well as users. Favorites belong to Users.
 
 
-- [] Include user accounts with unique login attribute (username or email)
+- [X] Include user accounts with unique login attribute (username or email)
+Added condition that uses the find by method to find an existing user with that username or email. If a user exists, then signup redirects them to login or signup with different credentials.
 
 - [X] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 Users who have many favorites may create, edit, see updates and delete favorite things from within their login session. 
