@@ -3,8 +3,13 @@ class FavoritesController < ApplicationController
 
   get '/favorites' do 
     if logged_in?
-      @favorites = Favorite.all 
-      erb :"favorites/index"
+      @favorites = Favorite.find_by(user_id: "#{current_user.id}")
+      if @favorites 
+        erb :"favorites/index"
+      else
+        flash[:need_favorite] = "Log your first favorite!"
+        redirect to '/favorites/new' 
+      end
     else
       flash[:not_logged_in] = "Please log in."
       redirect to '/login'
@@ -23,7 +28,6 @@ class FavoritesController < ApplicationController
     if logged_in? 
       @favorite = current_user.favorites.build(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes])
       @favorite.url = Url.new(:link => params[:favorite][:url])
-      binding.pry
       @url = @favorite.url
       @url.user_id = current_user.id
       @url.save

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-       flash[:have_account_error] = "You already have an account and are logged in."
+       flash[:logged_in] = "Welcome! You're logged in."
        redirect to "/favorites"
     else
       erb :"users/signup"
@@ -34,8 +34,8 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:user][:username])
-    if user && user.authenticate(params[:user][:password])
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/favorites"
     else

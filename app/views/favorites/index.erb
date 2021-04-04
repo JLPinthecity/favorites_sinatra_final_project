@@ -4,36 +4,33 @@
       <title>Favorites index page</title>
     </header>
     <body>
-
-    <% if flash.has?(:have_account_error) %>  
-    <%= flash[:have_account_error] %>
-    <% end %></p>
     
     <% if flash.has?(:logged_in) %>  
     <%= flash[:logged_in] %>
-    <% end %></p>
+    <% end %>
 
     <% if flash.has?(:signup_error) %>
     <%= flash[:signup_error] %>
-    <% end %></p>
+    <% end %>
 
     <% if flash.has?(:wrong_user) %>
     <%= flash[:wrong_user] %>
-    <% end %></p>
+    <% end %>
 
     <% if flash.has?(:delete_success) %>
     <%= flash[:delete_success] %>
-    <% end %></p>
+    <% end %>
   
-<br>
+
     <p>Here are all your favorites...</p>
     <% @favorites.each do |favorite| %>
+    <% binding.pry %>
 
     <ul>
     <li>Category: <a href="/favorites/<%= favorite.id %>"><%= favorite.category %></li></a>
     <p>Name: <%= favorite.name %></p>
     <p>Notes: <%= favorite.notes %></p>
-    <p>URL: <a href="<%= favorite.url %>" target="_blank"><%= favorite.url %></a></p>
+    <p>URL: <a href="<%= favorite.url.link %>" target="_blank"><%= favorite.url.link %></a></p>
     <p>Date created: <%= favorite.created_at.to_s.split(" ")[0] %></p>
     
  

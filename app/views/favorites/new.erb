@@ -2,7 +2,13 @@
   <html>
     
     <body>
-      <p><strong>Log a new favorite thing.</strong></p>
+
+    <% if flash.has?(:need_favorite) %>  
+    <%= flash[:need_favorite] %>
+    <% end %>
+<br>
+<br>
+      <p><h4>Log a new favorite thing below.</h4></p>
         <form action="/favorites" method="POST">
         <label>Category:</label>   
         <p style="color: gray; font-size: 12px;">Hint: Can be anything you want&#8212;Something like <i>My favorite documentary</i> or <i>My go-to brownie recipe</i>.</p>
