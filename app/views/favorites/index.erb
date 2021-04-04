@@ -24,7 +24,6 @@
 
     <p>Here are all your favorites...</p>
     <% @favorites.each do |favorite| %>
-    <% binding.pry %>
 
     <ul>
     <li>Category: <a href="/favorites/<%= favorite.id %>"><%= favorite.category %></li></a>

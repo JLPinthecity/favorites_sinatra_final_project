@@ -3,7 +3,8 @@ class FavoritesController < ApplicationController
 
   get '/favorites' do 
     if logged_in?
-      @favorites = Favorite.find_by(user_id: "#{current_user.id}")
+      @user = current_user
+      @favorites = @user.favorites
       if @favorites 
         erb :"favorites/index"
       else
@@ -66,30 +67,29 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # patch '/favorites/:id' do 
-  #   if logged_in? 
-  #     @favorite = Favorite.find(params[:id])
-  #     params.each do |label, input|
-  #       binding.pry
-  #       if input.empty? 
-  #         flash[:edit_error] = "Please enter a value for #{label}. Can't be blank."
-  #         redirect to "/favorites/#{@favorite.id}"
-  #       else
-  #         if @favorite && @favorite.user_id == current_user.id
-  #            @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:category], :url => params[:favorite][:url])
-  #            redirect to "/favorites/#{@favorite.id}"
-  #            binding.pry
-  #         else
-  #            flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
-  #            redirect to '/favorites'
-  #         end
-  #       end
-  #     end
-  #   else   
-  #     flash[:not_logged_in] = "Please log in."
-  #     redirect to "/login"
-  #   end
-  # end
+  patch '/favorites/:id' do 
+    if logged_in? 
+      @favorite = Favorite.find(params[:id])
+      params[:favorite].each do |label, input|
+        if input.empty? 
+          flash[:edit_error] = "Please enter a value for #{label}. Can't be blank."
+          redirect to "/favorites/#{@favorite.id}"
+        else
+          if @favorite && @favorite.user_id == current_user.id
+             @new_url = Url.new(:link => params[:favorite][:url])
+             @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes], :url => @new_url)
+             redirect to "/favorites/#{@favorite.id}"
+          else
+             flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
+             redirect to '/favorites'
+          end
+        end
+      end
+    else   
+      flash[:not_logged_in] = "Please log in."
+      redirect to "/login"
+    end
+  end
 
 
   post "/favorites/:id/delete" do 
