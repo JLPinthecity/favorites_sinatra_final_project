@@ -14,12 +14,11 @@
     <%= flash[:logout_success] %>
     <% end %></p>
 
-    
 
-    <h1>Login to Remember Me!</h1>
+  <h1>Login to Remember Me!</h1>
   <form method="post" action="/login">
-  <input type="text" name="username" id="username" placeholder="Username:">
-  <input type="text" name="password" id="password" placeholder="Password:">
+  <input type="text" name="username" id="username" placeholder="Username:" required>
+  <input type="text" name="password" id="password" placeholder="Password:" required>
 
   <input type="submit" value="submit">
 </form>
