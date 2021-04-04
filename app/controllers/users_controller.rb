@@ -1,7 +1,7 @@
 require 'pry'
 class UsersController < ApplicationController
 
-  get '/signup' do
+  get '/signup' do #flash works
     if logged_in?
        flash[:logged_in] = "Welcome! You're logged in."
        redirect to "/favorites"
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/login' do
+  get '/login' do #flash working
     if logged_in?
         flash[:logged_in] = "Welcome! You're logged in."
         redirect to '/favorites'
@@ -33,10 +33,11 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/login' do
+  post '/login' do   #flash messages work
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:logged_in] = "Welcome! You're logged in."
       redirect to "/favorites"
     else
       flash[:login_error] = "Username or password not recognized. Please sign up for an account or try again."
@@ -44,15 +45,13 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/logout' do
+  get '/logout' do 
     if logged_in?
       session.destroy
-      flash[:logout_success] = "You have logged out."
-      redirect to "login"
+      erb :"users/logout"
     else
       redirect to "/"
     end
   end
-
 
 end

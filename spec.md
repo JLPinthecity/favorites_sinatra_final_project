@@ -23,10 +23,18 @@ URL belongs_to favorites as well as users. Favorites belong to Users.
 
 - [] Include user accounts with unique login attribute (username or email)
 
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Ensure that users can't modify content created by other users
+- [X] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+Users who have many favorites may create, edit, see updates and delete favorite things from within their login session. 
+
+- [X] Ensure that users can't modify content created by other users
+During edit/update/delete functions, I made sure to include parameters comparing the favorite instance's user id to the id of the "current user," which is defined in my helpers block within the application controller. 
+
+
 - [ ] Include user input validations
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+
+- [X] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+I've included both success and error messages using Rack::Flash. 
+
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm

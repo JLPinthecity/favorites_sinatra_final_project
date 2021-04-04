@@ -42,7 +42,7 @@ class FavoritesController < ApplicationController
     end
   end
 
-  get '/favorites/:id' do
+  get '/favorites/:id' do #flash works
     if logged_in?
       @favorite = Favorite.find(params[:id])
       erb :"favorites/show"
@@ -52,7 +52,7 @@ class FavoritesController < ApplicationController
     end
   end  
 
-  get '/favorites/:id/edit' do
+  get '/favorites/:id/edit' do #flash works
     if logged_in?
       @favorite = Favorite.find(params[:id])
       if @favorite && @favorite.user == current_user

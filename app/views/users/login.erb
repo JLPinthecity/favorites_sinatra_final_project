@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-   
-   
-   
-  
 
     <% if flash.has?(:not_logged_in) %>
     <%= flash[:not_logged_in] %>
-    <% end %></p>
+    <% end %>
 
-    <% if flash.has?(:logout_success) %>
-    <%= flash[:logout_success] %>
-    <% end %></p>
-
+    <% if flash.has?(:logout) %>
+    <%= flash[:logout] %>
+    <% end %>
 
   <h1>Login to Remember Me!</h1>
   <form method="post" action="/login">
