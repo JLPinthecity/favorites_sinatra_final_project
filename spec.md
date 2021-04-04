@@ -35,7 +35,8 @@ During edit/update/delete functions, I made sure to include parameters comparing
 - [X] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
 I've included both success and error messages using Rack::Flash. 
 
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+Updated file with all requirements.
 
 Confirm
 - [X] You have a large number of small Git commits

@@ -20,8 +20,6 @@ I built this Favorite Things tracker as a part of the Flatiron School's Full-Sta
 7. Create new account with signup button
 
 8. Submit a few favorites to see the app at work
-
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
