@@ -39,8 +39,8 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect to "/favorites"
     else
-      flash[:login_error] = "Username or password not recognized."
-      redirect to "/login"
+      flash[:login_error] = "Username or password not recognized. Please sign up for an account or try again."
+      redirect to "/"
     end
   end
 

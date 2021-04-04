@@ -77,7 +77,8 @@ class FavoritesController < ApplicationController
         else
           if @favorite && @favorite.user_id == current_user.id
              @new_url = Url.new(:link => params[:favorite][:url])
-             @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], :notes => params[:favorite][:notes], :url => @new_url)
+             @favorite.update(:category => params[:favorite][:category], :name => params[:favorite][:name], 
+             :notes => params[:favorite][:notes], :url => @new_url)
              redirect to "/favorites/#{@favorite.id}"
           else
              flash[:wrong_user] = "Sorry you can only edit or delete your own favorites."
@@ -90,7 +91,6 @@ class FavoritesController < ApplicationController
       redirect to "/login"
     end
   end
-
 
   post "/favorites/:id/delete" do 
     if !logged_in?

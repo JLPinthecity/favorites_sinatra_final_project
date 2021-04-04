@@ -1,7 +1,10 @@
-
-    <% if flash.has?(:login_error) %>  
-    <%= flash[:login_error] %>
-    <% end %></p>
+<!DOCTYPE html>
+<html>
+<body>
+   
+   
+   
+  
 
     <% if flash.has?(:not_logged_in) %>
     <%= flash[:not_logged_in] %>
@@ -13,14 +16,14 @@
 
     
 
-      <form action="/login" method="POST">
-      <label>Username:</label>
-      <p><input type="text" name="username" id="username"></p>
-      <label>Password:</label>
-      <p><input type="text" name="password" id="password"></p>
-      <input type="submit" value="Log in">
-      </form>
+    <h1>Login to Remember Me!</h1>
+  <form method="post" action="/login">
+  <input type="text" name="username" id="username" placeholder="Username:">
+  <input type="text" name="password" id="password" placeholder="Password:">
 
-    <a href="/"><button>Go back to homepage</button></a>
+  <input type="submit" value="submit">
+</form>
 
- 
+
+ </body>
+</html>

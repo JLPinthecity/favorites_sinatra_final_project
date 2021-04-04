@@ -2,6 +2,10 @@
 <html>
   <body>
 
+    <% if flash.has?(:login_error) %>  
+    <%= flash[:login_error] %>
+    <% end %>
+
  <a href="/about"><p>About</a></p>
 
 <h3>Welcome to Your Favorite Things Diary!</h3>

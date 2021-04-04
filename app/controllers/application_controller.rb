@@ -29,9 +29,6 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
-    #double pipes// or equals // if a is undefined or falsey, 
-    #then evaluate b and set a to the result
-
   end
 
 end
