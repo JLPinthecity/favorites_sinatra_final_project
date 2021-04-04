@@ -10,16 +10,24 @@ class UsersController < ApplicationController
     end
   end
 
-  post "/signup" do
+  post "/signup" do 
     params.each do |label, input|
         if input.empty?
             flash[:signup_error] = "Please enter a value for #{label}"
             redirect to "/signup"
         else
-          @user = User.new(params[:user])
-          @user.save
-          session[:user_id] = @user.id
-          redirect to "/favorites"
+            check_email = params[:user][:email]
+            check_username = params[:user][:username]
+              if User.find_by(:email => check_email) || User.find_by(:username => check_username) 
+                flash[:already_exists] = "Email or username entered is associated with existing account."
+                redirect to "/"
+                binding.pry
+              else
+                @user = User.new(params[:user])
+                @user.save
+                session[:user_id] = @user.id
+                redirect to "/favorites"
+              end
         end
     end
   end

@@ -52,7 +52,7 @@ class FavoritesController < ApplicationController
     end
   end  
 
-  get '/favorites/:id/edit' do #flash works
+  get '/favorites/:id/edit' do 
     if logged_in?
       @favorite = Favorite.find(params[:id])
       if @favorite && @favorite.user == current_user
@@ -67,7 +67,7 @@ class FavoritesController < ApplicationController
     end
   end
 
-  patch '/favorites/:id' do 
+  patch '/favorites/:id' do #flash works
     if logged_in? 
       @favorite = Favorite.find(params[:id])
       params[:favorite].each do |label, input|
