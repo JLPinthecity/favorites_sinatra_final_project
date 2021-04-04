@@ -1,51 +1,26 @@
 # Remember Me
 
-Remember Me is a MVC app created using Sinatra that helps users keep track of their favorite things.
-# Remember Me
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Remember Me is a MVC app, created using Sinatra, that helps users keep track of their favorite things. 
 
-Prerequisites
-What things you need to install the software and how to install them
+I built this Favorite Things tracker as a part of the Flatiron School's Full-Stack Web Dev curriculum. More details about my coding process can be found [here.](https://joannpan.medium.com/how-to-make-a-sinatra-web-app-my-entire-planning-and-coding-process-45b92123ef5d)
+# Installation
 
-Give examples
-Installing
-A step by step series of examples that tell you how to get a development env running
+1. Fork the repository
 
-Say what the step will be
+2. Git clone file to your computer
 
-Give the example
-And repeat
+3. Run bundle install
 
-until finished
-End with an example of getting some data out of the system or using it for a little demo
+4. Run rake db:migrate
 
-Running the tests
-Explain how to run the automated tests for this system
+5. Run shotgun
 
-Break down into end to end tests
-Explain what these tests test and why
+6. Visit http://localhost:9393/ 
 
-Give an example
-And coding style tests
-Explain what these tests test and why
+7. Create new account with signup button
 
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
+8. Submit a few favorites to see the app at work
 
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
-Versioning
-We use SemVer for versioning. For the versions available, see the tags on this repository.
-
-Authors
-Billie Thompson - Initial work - PurpleBooth
-See also the list of contributors who participated in this project.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
