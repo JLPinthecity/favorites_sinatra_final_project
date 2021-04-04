@@ -2,15 +2,13 @@
 <html>
 <body>
 
-    <% if flash.has?(:login_error) %>  
-    <%= flash[:login_error] %>
-    <% end %>
-
     <% if flash.has?(:already_exists) %>  
     <%= flash[:already_exists] %>
     <% end %>
 
-
+    <% if flash.has?(:error) %>  
+    <%= flash[:error] %>
+    <% end %>
     
 
  <a href="/about"><p>About</a></p>

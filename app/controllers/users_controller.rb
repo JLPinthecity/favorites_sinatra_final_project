@@ -10,9 +10,9 @@ class UsersController < ApplicationController
     end
   end
 
-  post "/signup" do 
+  post "/signup" do #flash messages work
     params.each do |label, input|
-        if input.empty?
+        if input.empty?  
             flash[:signup_error] = "Please enter a value for #{label}"
             redirect to "/signup"
         else
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
                 @user = User.new(params[:user])
                 @user.save
                 session[:user_id] = @user.id
+                flash[:logged_in] = "Welcome! You're logged in."
                 redirect to "/favorites"
               end
         end
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
       flash[:logged_in] = "Welcome! You're logged in."
       redirect to "/favorites"
     else
-      flash[:login_error] = "Username or password not recognized. Please sign up for an account or try again."
+      flash[:error] = "Username or password not recognized. Please sign up for an account or try again."
       redirect to "/"
     end
   end
