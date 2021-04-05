@@ -1,5 +1,5 @@
 class Url < ActiveRecord::Base
-  belongs_to :favorites
+  belongs_to :favorite
   belongs_to :user
 end
   
