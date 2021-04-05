@@ -1,3 +1,19 @@
-TEST
+<!DOCTYPE html>
+<html>
+<head>
+<title>User's links</title>
+</head>
 
+<body>
+<h1> Your favorite things</h1>
 
+<% @urls.each do |url| %>
+
+<ul>
+<li><a href="<%= url.link %>" target="_blank"><%= url.link %></a></li>
+</ul>
+
+<% end %>
+</body>
+
+</html>

@@ -43,9 +43,14 @@ class FavoritesController < ApplicationController
   end
 
   get '/favorites/:id' do #flash works
-    if logged_in?
+    if logged_in? 
       @favorite = Favorite.find(params[:id])
-      erb :"favorites/show"
+      if @favorite && @favorite.user == current_user
+        erb :"favorites/show"
+      else 
+        flash[:wrong_user] = "Sorry you can only view, edit and delete your own favorites."
+        redirect to '/favorites'
+      end
     else
       flash[:not_logged_in] = "Please log in."
       redirect to "/login"
