@@ -1,0 +1,303 @@
+A user will be able to sign up and log into the Remember Me app—a personal journal of favorite things. Once logged in, the user will be able to fill out a form and file a favorite thing. On the favorite thing form, each individual favorite thing has a category, name, notes, and URL, which users can later access. The user will be able to see all their favorite things including links on one page. 
+
+
+Ex1.
+Category: Favorite movie
+Name: Eternal Sunshine of the Spotless Mind
+Notes: Best movie ever
+URL: imdb
+
+Ex2:
+Category: Favorite Chocolate Chip Cookie Recipe
+Name: Tasty choc chip
+Notes: never fails
+URL: BuzzFeed.com
+
+Ex3: 
+favorite nyc bakery
+Name: super moon
+Notes: Nar Ahn bought us a care package during the pandemic that was delivered to our apartment. Everything in the bright pink box was freaking amazing
+URL: Supermoon.com 
+
+Ex4: favorite summer tradition
+Name: Waterfire in Rhode Island 
+Notes: 
+
+ Favorite thing about Buffy at 5 months
+Her raw enthusiasm when doing tricks when there’s food involved. Asking for a down, she will severely plump to the floor with sound so she knows she means business—for a treat. 
+
+—
+
+Page 1 
+
+Homepage 
+route: get ‘/‘
+
+Welcome to Your Favorite Things Diary!
+
+The place to track newly discovered favorites so you don’t lose track (ever!). You can always come back here for a refresh. 
+
+Buttons -LOGIN- -SIGNUP-
+
+Path 1: New favorite thing #new
+Path 2: See list of all of user’s favorite things #index
+
+
+Page 2 
+
+Path 1:log in
+
+Route: get ‘/login’
+
+Log in page 
+
+FORM TO LOG IN
+Username:
+password:
+
+CONTROLLER FOR GET LOGIN:
+If logged in, redirect to ‘favorites’
+  else [not logged in]
+erb: login
+
+——
+
+GOES TO post ‘login’  — DONE
+
+After logging in, user is redirected to ‘/favorites’ #index
+
+On favorites page, user can also create new or logout.
+
+Buttons -NEW FAVORITE- -LOGOUT-
+
+
+Page 3 
+
+Path 2 — signup 
+
+SIGNUP page 
+
+
+LOGIC:
+If logged in, redirect to /favorites
+Else, go to signups
+
+
+FORM TO SIGN UP
+Username:
+Password:
+email: 
+SUBMIT
+
+GOES TO POST SIGNUP 
+
+After signing up, user is redirected to ‘login’ page. After logging in, user can see all of favorites and buttons to create new favorite or logout. 
+
+
+—
+
+Page 4 
+
+CREATE NEW FAVORITE PAGE #NEW
+
+Get ‘favorites/new’
+
+FORM TO CREATE NEW FAVORITE:
+
+Category: [favorite song]
+Name: [song title]
+Notes: [reminds me of easy summer days]
+URL: link
+
+
+POST ‘favorites’ — HERE
+If logged in, can see all of user’s favorites,
+Else
+Redirect to login
+
+
+—
+
+Page 5 
+
+FAVORITES index page #INDEX — DONE
+Shows all of users favorites
+
+<link to individual favorite things><favorite.name>
+
+
+Buttons [New favorite thing] [logout]
+
+—
+
+Page 6
+
+FAVORITE individual show page  #SHOW — DONE
+
+Get ‘/favorites/:id’
+
+<individual favorite thing><id><content>
+
+Buttons [edit favorites][new favorite]
+
+
+<DELETE FAVORITE FORM >
+
+
+<a href="/tweets"><button>Back to Favorites</button></a>
+
+
+
+——
+
+Page 6
+
+FAVORITE individual edit page  #EDIT — DONE
+
+EDIT form 
+
+  <input type="submit" value="submit">
+
+Patch route 
+
+PAGE 7 — 
+
+URL.all page for users.
+
+
+
+IF LOGGED IN
+      CHECK IF THERE’S AN EMPTY PARAMS 
+      @favorite = establish favorite here because I need id for URL redirect if input is empty
+      params.each do |label, input|
+            IF one input is empty 
+                Flash message
+                Redirect to individual favorite show page 
+            ELSE 
+                IF THIS FAVE BELONGS TO CURRENT USER
+                @favorite.update with new params stuff
+                Redirect to individual favorite show page
+                Else
+                Existing flash message about how you can only edit your own stuff
+                Redirect to favorites.
+            END
+ELSE 
+   Redirect to log in page + flash message saying they’re not logged in
+END
+
+
+Models
+Favorite Things
+Category
+Name
+Notes
+Date
+
+Users
+has_secure_password
+Username
+Email 
+
+Urls
+content
+user_id
+favorite_id
+
+
+
+FOR FAVORITES INDEX PAGE
+
+@favorites = Favorite.find_by(user_id: "#{current_user.id}")
+
+else
+flash[:need_favorite] = "Log your first favorite!"
+redirect to '/favorites/new' 
+end
+
+Favorites private? Actually would be a nice feature like Venmo to see all favorites as recommendations Or not?!
+
+ASSOCIATIONS
+
+class User < ApplicationRecord
+  has_many :favorites
+  has_many :urls through :favorites 
+  has_secure_password
+end
+
+class Favorite < ApplicationRecord
+  has_one :url
+  belongs_to :user
+end
+
+class Urls < ApplicationRecord
+  belongs_to :favorites
+  belong_to :user
+end
+
+
+
+
+class Users < ActiveRecord::Migration[6.0]
+  def change
+    create_table :users do |t|
+      t.string :name
+      t.string :password_digest
+    end
+
+
+class Favorites < ActiveRecord::Migration[6.0]
+  def change
+    create_table :favorites do |t|
+      t.string :category
+      t.string :name
+      t.string :notes
+      t.belongs_to :user
+
+       t.timestamps
+
+    end
+
+HAS ONE
+FAVORITES
+url
+url=
+build_url
+create_url
+create_url!
+reload_url
+
+class Urls < ActiveRecord::Migration[6.0]
+  def change
+    create_table :urls do |t|
+      t.text :link
+      t.belongs_to :user
+      t.belongs_to :favorite
+    end
+
+
+BELONGS TO
+URLS
+4.1.1 Methods Added by belongs_to
+When you declare a belongs_to association, the declaring class automatically gains 6 methods related to the association:
+	•	User
+	•	user=(associate)
+	•	build_user(attributes = {})
+	•	create_user(attributes = {})
+	•	create_user!(attributes = {})
+	•	reload_user
+
+	•	Favorite
+	•	favorite=(associate)
+	•	build_favorite(attributes = {})
+	•	create_favorite(attributes = {})
+	•	create_favorite!(attributes = {})
+	•	reload_favorite
+
+
+#double pipes// or equals // if a is undefined or falsey, 
+#then evaluate b and set a to the result
+
+
+
+
+

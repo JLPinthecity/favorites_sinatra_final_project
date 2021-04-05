@@ -19,9 +19,8 @@ class UsersController < ApplicationController
             check_email = params[:user][:email]
             check_username = params[:user][:username]
               if User.find_by(:email => check_email) || User.find_by(:username => check_username) 
-                flash[:already_exists] = "Email or username entered is associated with existing account."
+                flash[:userexists] = "Email or username entered is associated with existing account."
                 redirect to "/"
-                binding.pry
               else
                 @user = User.new(params[:user])
                 @user.save

@@ -30,7 +30,8 @@ Users who have many favorites may create, edit, see updates and delete favorite 
 - [X] Ensure that users can't modify content created by other users
 During edit/update/delete functions, I made sure to include parameters comparing the favorite instance's user id to the id of the "current user," which is defined in my helpers block within the application controller. 
 
-- [ ] Include user input validations
+- [X] Include user input validations
+There are if/else statements to prevent users from inputting blank fields as well as validations to prevent them from accessing content that does not belong to them. 
 
 - [X] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
 I've included both success and error messages using Rack::Flash. 
